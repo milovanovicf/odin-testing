@@ -1,15 +1,16 @@
 function analyzeArray(arr) {
-  return {
-    average: Math.floor(arr.reduce((a, b) => (a + b) / 2)),
-    min: arr.sort((a, b) => a - b)[0],
-    max: arr.sort((a, b) => b - a)[0],
-    length: arr.length,
-  };
+  const sort = arr.sort((a, b) => a - b);
 
-  //   myObj["average"] = Math.floor(arr.reduce((a, b) => (a + b) / 2));
-  //   myObj["min"] = arr.sort((a, b) => a - b)[0];
-  //   myObj["max"] = arr.sort((a, b) => b - a)[0];
-  //   myObj["length"] = arr.length;
+  if (arr.length === 0) {
+    return {};
+  } else {
+    return {
+      average: Math.floor(arr.reduce((a, b) => a + b) / arr.length),
+      min: sort[0],
+      max: sort[arr.length - 1],
+      length: arr.length,
+    };
+  }
 }
-
+console.log(analyzeArray([2, 5, 6, 78, 1]));
 module.exports = analyzeArray;

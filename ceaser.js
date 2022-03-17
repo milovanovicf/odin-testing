@@ -1,5 +1,5 @@
 function ceaserCipher(string, num) {
-  string = string.split("");
+  let splittedString = string.split("");
   const alphabet = [
     "a",
     "b",
@@ -30,27 +30,27 @@ function ceaserCipher(string, num) {
   ];
 
   function encrypt(i) {
-    let index = alphabet.indexOf(string[i]);
+    let index = alphabet.indexOf(splittedString[i]);
     index = index + num;
     while (index > 26) {
-      index = index - 26;
+      index -= 26;
     }
-    string[i] = alphabet[index];
+    splittedString[i] = alphabet[index];
   }
 
-  for (let i = 0; i < string.length; i++) {
-    if (!alphabet.includes(string[i].toLowerCase())) {
-      string[i] = string[i];
-    } else if (string[i] === string[i].toUpperCase()) {
-      string[i] = string[i].toLowerCase();
+  for (let i = 0; i < splittedString.length; i++) {
+    if (!alphabet.includes(splittedString[i].toLowerCase())) {
+      splittedString[i] = splittedString[i];
+    } else if (splittedString[i] == splittedString[i].toUpperCase()) {
+      splittedString[i] = splittedString[i].toLowerCase();
       encrypt(i);
-      string[i] = string[i].toUpperCase();
+      splittedString[i] = splittedString[i].toUpperCase();
     } else {
       encrypt(i);
     }
   }
 
-  return string.join("");
+  return splittedString.join("");
 }
 
 module.exports = ceaserCipher;
